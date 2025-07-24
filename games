@@ -1,0 +1,312 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<time.h>
+void snakes_and_ladders();
+void tic_tac_toe();
+void rock_paper_scissors();
+void guess_the_number();
+int main()
+{
+    printf("\nWelcome to Games Hub..!\n");
+    printf("There are 3 fun gamess..\n");
+    while(1)
+    {
+        int n;
+        printf("Enter your choice..\n");
+        printf("1.snakes and ladders\n2.Tic Tac Toe\n3.Rock Paper Scissors\n4.Guess the number\n5.Quit\n");
+        scanf("%d",&n);
+        switch(n)
+        {
+            case 1 :snakes_and_ladders();
+            break;
+            case 2 :tic_tac_toe();
+            break;
+            case 3:rock_paper_scissors();
+            break;
+            case 4 : guess_the_number();
+            break;
+            case 5:return 0;
+            break;
+            default: printf("Sorry Enter a valid choice..\n");
+        }
+    }
+}
+void snakes_and_ladders()
+{
+    printf("Welcome to Snakes and ladders..\n");
+    int n,count=0;
+    char ch;
+    printf("Welcome to snakes and ladders\n");
+    printf("Enter the number of players\n");
+    scanf("%d",&n);
+    int sum[100]={0};
+    printf("Game starts\n");
+    while(1){
+        for(int i=0;i<n;i++)
+        {
+        printf("Player %d turn\n",i+1);
+        printf("Press enter to continue\n");
+        ch=scanf("%c",&ch);
+        srand(time(0));
+        int min=1,max=6;
+        int random=min+rand()%(max-min+1);
+        printf("You have rolled %d\n",random);
+        sum[i]+=random;
+        if(sum[i]==28){
+                printf("Oops there is a snake...!\n");
+            sum[i]=10;
+        }
+        if(sum[i]==37)
+        {
+           printf("Oops there is a snake...!\n");
+            sum[i]=10;
+        }
+        if(sum[i]==96)
+        {
+           printf("Oops there is a snake...!\n");
+            sum[i]=42;
+        }
+        if(sum[i]==48)
+        {
+           printf("Oops there is a snake...!\n");
+            sum[i]=16;
+        }
+        if(sum[i]==75)
+        {
+           printf("Oops there is a snake...!\n");
+            sum[i]=32;
+        }
+        if(sum[i]==94)
+        {
+           printf("Oops there is a snake...!\n");
+            sum[i]=71;
+        }
+        if(sum[i]==4)
+        {
+           printf("Hurrayyy...! There is a ladder..\n");
+            sum[i]=56;
+        }
+        if(sum[i]==12)
+        {
+           printf("Hurrayyy...! There is a ladder..\n");
+            sum[i]=50;
+        }
+        if(sum[i]==14)
+        {
+           printf("Hurrayyy...! There is a ladder..\n");
+            sum[i]=55;
+        }
+        if(sum[i]==22)
+        {
+           printf("Hurrayyy...! There is a ladder..\n");
+            sum[i]=58;
+        }
+        if(sum[i]==41)
+        {
+           printf("Hurrayyy...! There is a ladder..\n");
+            sum[i]=79;
+        }
+        if(sum[i]==54)
+        {
+           printf("Hurrayyy...! There is a ladder..\n");
+            sum[i]=88;
+        }
+        printf("player %d current score is %d\n",i+1,sum[i]);
+        if(sum[i]>=100){
+            count=i+1;
+            break;
+        }
+    }
+    if(count>0){
+        break;
+    }
+    }
+    printf("Winner is %d player\n",count);
+    printf("End of snakes and ladders...\n");
+    printf("\n");
+}
+void tic_tac_toe()
+{
+    printf("Welcome to Tic Tac Toe..\n");
+    char ch;
+char a[3][3]={' '};
+int i,j,c,b,count;
+while(1)
+{
+printf("Player 1's turn\n");
+printf("Enter the position\n");
+scanf("%d %d",&c,&b);
+if(a[c][b]=='x' || a[c][b]=='o')
+{
+    printf("Since you haven't enter a valid choice its player 2's turn\n");
+}
+else
+{
+ch = 'o';
+a[c][b]=ch;
+for(i=0;i<3;i++){
+    for(j=0;j<3;j++){
+        printf("\t%c\t",a[i][j]);
+        printf("|");
+    }
+    printf("\n");
+}
+   if(a[0][0]==a[1][1] && a[0][0]==a[2][2]){
+        count=1;
+}
+for(int i=0;i<3;i++)
+{
+j=0;
+    if(a[i][j]== 'o' && a[i][j+1]=='o' &&a[i][j+2]=='o'){
+        count=1;
+    }
+}
+for(j=0;j<3;j++)
+{
+    i=0;
+        if(a[i][j]=='o' && a[i+1][j]=='o' && a[i+2][j]=='o')
+            count=1;
+}
+    if(a[0][0]=='o' &&a[0][1]=='o' && a[0][2]=='o' || a[0][2]=='o'&& a[2][0]=='o' &&a[1][1]=='o'){
+        count=1;
+    }
+
+if(count==1){
+    printf("Player 1 wins\n");
+    break;
+}
+}
+printf("Player 2's turn\n");
+printf("Enter the position\n");
+scanf("%d %d",&c,&b);
+if(a[c][b]=='x' || a[c][b]=='o')
+{
+    printf("Since you haven't enter a valid choice its player 1's turn\n");
+}
+else
+{
+ch = 'x';
+a[c][b]=ch;
+for(i=0;i<3;i++){
+    for(j=0;j<3;j++){
+        printf("\t%c\t",a[i][j]);
+        printf("|");
+    }
+    printf("\n");
+}
+   if((a[0][0]=='x' && a[1][1]=='x' && a[2][2]=='x')|| (a[0][2]=='x'&& a[2][0]=='x' &&a[1][1]=='x')){
+        count=2;
+}
+for(int i=0;i<3;i++)
+{
+j=0;
+    if(a[i][j]=='x'&& a[i][j+1]=='x' && a[i][j+2]=='x'){
+        count=2;
+    }
+
+}
+for(j=0;j<3;j++)
+{
+    i=0;
+        if(a[i][j]=='x' && a[i+1][j]=='x' &&a[i+2][j]=='x' )
+            count=2;
+}
+if(count==2){
+    printf("Player 2 wins\n");
+    break;
+}
+}
+}
+ printf("End of tic tac toe...\n");
+    printf("\n");
+}
+void rock_paper_scissors()
+{
+    printf("Welcome to Rock Paper Scissors..\n");
+    int count1=0;
+int count2=0;
+int comp;
+int player;
+//char a[]={"rock","paper","scissor"};
+while (count1!=3 && count2!=3){
+printf("\nEnter your choice:\n1-rock\n2-scissors\n3-paper\n");
+scanf("%d",&player);
+srand(time(0));
+int min=1,max=3;
+int comp=min+rand()%(max-min+1);
+//printf("You have thrown %s computer has thrown %s\n",a[player],a[comp]);
+printf("You have thrown %d \ncomputer has thrown %d\n",player,comp);
+if(comp!=player){
+if ((comp==1 && player==2)||(comp==2 && player==3)||(comp==3 && player==1))
+{
+    printf("Computer gets the point\n");
+   count1++;
+  // printf("count1 is now %d\n")
+}
+else{
+    printf("you get the point\n");
+    count2++;
+    //printf("count 2 is now %d")
+}
+}
+else{
+    printf("Its a tie\n");
+}
+printf("Your score-%d\ncomputer score-%d\n",count2,count1);
+}
+if(count1==3)
+    printf("Computer wins..\n");
+else
+    printf("you win..\n");
+ printf("End of Rock Paper Scissors...\n");
+    printf("\n");
+}
+void guess_the_number()
+{
+    printf("WElCOME TO GUESS THE NUMBER GAME\n");
+    printf("Enter number of players playing..\n");
+    int c,val=0;
+    scanf("%d",&c);
+    int a[c];
+    for(int i=0;i<c;i++)
+    {
+       printf("It is player %d's turn\n",i+1);
+    printf("The number is in the range of 1-100 both inclusive\n");
+    srand(time(0));
+    int n = 1 + rand() % 100;
+    int temp =0;
+    while(1)
+    {
+        printf("Enter your guesss\n");
+        int num;
+        scanf("%d",&num);
+        temp++;
+        if(n==num)
+        {
+            printf("Hurrayyy..you gueesed it right..in your %dth try..\n",temp);
+            a[i]=temp;
+            break;
+        }
+        if(num>n)
+        {
+            printf("Try again..The correct number is smaller...\n");
+            continue;
+        }
+        if(num<n)
+        {
+            printf("Try again..The correct number is greater...\n");
+            continue;
+        }
+    }
+    }
+    int min = a[0];
+    for(int i=0;i<c;i++)
+    {
+        if(a[i] < min)
+        {
+            min=a[i];
+             val = i;
+        }
+    }
+    printf("%d player won....!!!!\n",val+1);
+}
